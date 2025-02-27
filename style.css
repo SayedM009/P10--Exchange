@@ -1,0 +1,253 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+:root {
+  --primariy-color: oklch(0.205 0 0);
+  --secondary-color: oklch(0.552 0.016 285.938);
+  --light-color: #fff;
+  --border-radius: 24px;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+  font-family: "Teko", sans-serif;
+  background-color: oklch(0.37 0.013 285.805);
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Exchange APP */
+.exchange__app {
+  color: var(--secondary-color);
+  background-color: var(--primariy-color);
+  width: 400px;
+  height: 420px;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+@media (max-width: 767px) {
+  .exchange__app {
+    width: 330px;
+  }
+}
+
+.exchange__app .app__name {
+  color: var(--light-color);
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.exchange__app .app__icon {
+  width: 30px;
+  color: var(--light-color);
+}
+
+.exchange__app .app__lable,
+.exchange__app .exchange__rate {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.exchange__app select {
+  font-family: inherit;
+  background-color: transparent;
+  color: var(--light-color);
+  border: none;
+  outline: none;
+  font-size: 24px;
+}
+
+.exchange__app input {
+  font-family: inherit;
+  background-color: transparent;
+  color: var(--light-color);
+  border: none;
+  outline: none;
+  width: 75px;
+  font-size: 20px;
+}
+
+.exchange__app option {
+  color: var(--primariy-color);
+  user-select: none;
+}
+
+.exchange__app .swap__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid oklch(0.37 0.013 285.805);
+  transition: 0.2s;
+  background-color: var(--light-color);
+  color: var(--primariy-color);
+}
+
+.exchange__app .swap__btn:hover {
+  background-color: var(--primariy-color);
+  color: var(--light-color);
+}
+
+.exchange__app .exchange__btn {
+  font-family: inherit;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  width: 100%;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  padding: 6px 0;
+  transition: 0.2s;
+  margin: 24px 0;
+
+  border: 1px solid oklch(0.37 0.013 285.805);
+  background-color: var(--light-color);
+  color: var(--primariy-color);
+}
+
+.exchange__app .exchange__btn:hover {
+  background-color: var(--primariy-color);
+  color: var(--light-color);
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spaces {
+  margin: 24px 0;
+  border: 1px solid oklch(0.37 0.013 285.805);
+  padding: 24px 12px;
+  border-radius: var(--border-radius);
+}
