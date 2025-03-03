@@ -6,17 +6,14 @@ const currencyTwo = document.getElementById("currency__two");
 const convertedAmount = document.querySelector(".converted__amount");
 const exchangeButton = document.querySelector(".exchange__btn");
 
-// Values
-let currencyValueOne = currencyOne.value;
-let currencyValueTwo = currencyTwo.value;
-let targetAmountValue = targetAmount.value;
-let convertedAmountValue = convertedAmount.value;
+
 
 // Functions
+let targetRate
 
 // Observe changing currencies
-const changeCurrency = function (e) {
-  exchangeRate.textContent = `${currencyOne.value}  ${currencyTwo.value}`;
+const changeCurrency = function () {
+  insertCurrentRate()
   fetchAllCurrencies()
 };
 
@@ -24,36 +21,20 @@ currencyOne.addEventListener("change", changeCurrency);
 currencyTwo.addEventListener("change", changeCurrency);
 
 // Update the target amount value  
-targetAmount.addEventListener("change", function(e) {
-  targetAmountValue = e.target.value
+targetAmount.addEventListener("input", function(e) {
+  targetAmount.value = e.target.value
 })
 
-// Update current values
-function updateValues(value1, value2, value3, value4) {
-  currencyOne.value = value1
-  currencyTwo.value = value2
-  targetAmount.value = value3
-  convertedAmount.value = value4
-}
-
-
 // Swap currencies & amounts
-let swaped = false;
 const swapValues = function (e) {
-   [currencyValueOne, currencyValueTwo, targetAmountValue, convertedAmountValue] = [currencyValueTwo, currencyValueOne, convertedAmountValue, targetAmountValue] 
-    updateValues(currencyValueOne, currencyValueTwo, targetAmountValue, convertedAmountValue)
-
+   [currencyOne.value, currencyTwo.value, targetAmount.value, convertedAmount.value] = [currencyTwo.value, currencyOne.value, convertedAmount.value, targetAmount.value] 
+    fetchAllCurrencies()
   };
 
 swapButton.addEventListener("click", swapValues);
 
-// Convert the amounts depends on currencies
-const convertAmount = function (e) {};
 
-exchangeButton.addEventListener("click", convertAmount);
 
-let targetRate
-exchangeButton.addEventListener("click", fetchAllCurrencies)
 
 function fetchAllCurrencies() {
   const reponse = fetch(`https://v6.exchangerate-api.com/v6/9fc97cde8a32cd25c00dd2c5/latest/${currencyOne.value}`)
@@ -67,18 +48,22 @@ function fetchAllCurrencies() {
     insertCurrencies(currencyOne, currencies)
     insertCurrencies(currencyTwo, currencies)
     // 4. Insert the target rate and the currencies to the  exchange rate element
-    insertCurrentRate(targetRate)
-
+    insertCurrentRate()
+    console.log(targetRate)
+    if (!(targetAmount.value > 0)) return
+    
+    convertedAmount.value = (+targetAmount.value * +targetRate).toFixed(2)
   })
-
+  
 }
 
 fetchAllCurrencies()
+exchangeButton.addEventListener("click", fetchAllCurrencies)
 
 function insertCurrencies(element, arr) {
     arr.map(ele => element.insertAdjacentHTML("beforeend", `<option vlaue='${ele}'>${ele}</option>`))
 }
 
-function insertCurrentRate(rate) {
-  exchangeRate.textContent = `${currencyValueOne} ${rate} ${ currencyValueTwo}`
+function insertCurrentRate() {
+  exchangeRate.textContent = `${currencyOne.value} ${targetRate} ${currencyTwo.value}`
 }
